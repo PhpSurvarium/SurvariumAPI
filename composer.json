@@ -1,5 +1,5 @@
 {
-  "name" : "Survarium API",
+  "name" : "survarium/api",
   "description" : "Survarium API For community",
   "type" : "library",
   "homepage": "https://survarium.com",
