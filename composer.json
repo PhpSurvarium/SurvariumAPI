@@ -1,0 +1,19 @@
+{
+  "name" : "Survarium API",
+  "description" : "Survarium API For community",
+  "type" : "library",
+  "homepage": "https://survarium.com",
+  "version" : "1.0",
+  "require" : {
+    "php" : ">=5.5",
+    "ext-curl": "*"
+  },
+  "require-dev" : {
+    "phpunit/phpunit" : "4.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Survarium\\Api\\": "src"
+    }
+  }
+}
