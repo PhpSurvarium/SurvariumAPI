@@ -24,7 +24,7 @@ class Controller
      * We can not require ssl from our community so we use http
      * @var string
      */
-    const baseUrl = 'http://api.survarium.loc/';
+    const baseUrl = 'http://api.survarium.com/';
 
     protected $consumer;
 

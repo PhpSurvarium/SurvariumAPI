@@ -8,12 +8,17 @@
 
 namespace Survarium\Api\Tests;
 
-
 use Survarium\Api\Response;
 
+/**
+ * @coverDefaultClass Survarium\Api\Response
+ */
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * @covers ::setHeadersString
+     */
     public function testParseHeaders()
     {
         $headerString = <<<TEXT

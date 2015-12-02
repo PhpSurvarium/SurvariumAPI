@@ -8,13 +8,16 @@
 
 namespace Survarium\Api\Tests;
 
-
 use Survarium\Api\SignatureProcessor;
 
+/**
+ * Class SignatureProcessorTest
+ * @coverDefaultClass Survarium\Api\SignatureProcessor
+ */
 class SignatureProcessorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Adding abbility to test protected and private methods
+     * Adding ability to test protected and private methods
      */
     public static function getMethod($name)
     {
@@ -26,6 +29,7 @@ class SignatureProcessorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test if accepted method can be used
+     * @covers ::getAcceptedAlgorithm
      */
     public function testAcceptedAlgorithm()
     {
@@ -40,6 +44,7 @@ class SignatureProcessorTest extends \PHPUnit_Framework_TestCase
      * Check if client produce correct signature
      *
      * @dataProvider signatureDataProvider
+     * @covers ::buildSignature
      */
     public function testBuildSignature($result, $requestString, $consumerString)
     {

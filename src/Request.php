@@ -86,7 +86,7 @@ class Request
      */
     public function getSignatureString()
     {
-        return $this->requestUrl . $this->httpMethod . $this->nonce;
+        return $this->requestUrl . $this->httpMethod . $this->nonce . $this->timestamp;
     }
 
     /**

@@ -147,17 +147,24 @@ class SurvariumApi
     /**
      * Check if request was successful and return body of the request
      *
+     * Here all SurvariumException could be Catched
+     *
      * @param  array $params - api path and params
      * @return array
      */
     private function returnResponseBody($params)
     {
-        $response = $this->controller->sendGetRequest($params['path'], $params['params']);
-        if ($response->getStatusCode() == 200) {
-            return $this->returnResult($response->getStatusCode(), $response->getBody());
-        } else {
-            return $this->returnResult($response->getStatusCode(), false);
+        try {
+            $response = $this->controller->sendGetRequest($params['path'], $params['params']);
+            if ($response->getStatusCode() == 200) {
+                return $this->returnResult($response->getStatusCode(), $response->getBody());
+            } else {
+                return $this->returnResult($response->getStatusCode(), false);
+            }
+        } catch (SurvariumException $e) {
+            return $this->returnResult($e->getCode(), $e->getMessage());
         }
+
     }
 
     /**
