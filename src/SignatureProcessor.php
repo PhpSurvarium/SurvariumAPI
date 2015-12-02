@@ -13,7 +13,7 @@ namespace Survarium\Api;
 
 class SignatureProcessor
 {
-      /**
+     /**
      * Chose acceptbale algo that exists on client side
      * @var array
      */
@@ -21,6 +21,11 @@ class SignatureProcessor
         'sha1'
     ];
 
+    /**
+     * Return algorithm name
+     *
+     * @return string
+     */
     public function getName()
     {
         return 'HMAC-SHA1';
@@ -67,9 +72,9 @@ class SignatureProcessor
     protected function getAcceptedAlgorithm()
     {
         $algos = hash_algos();
-        foreach ($this->acceptedAlgos as $curAlg) {
-            if (in_array($curAlg, $algos)) {
-                return $curAlg;
+        foreach ($this->acceptedAlgos as $currentAlgo) {
+            if (in_array($currentAlgo, $algos)) {
+                return $currentAlgo;
             }
         }
         throw new SurvariumException('Install necessary hash algorithm (SHA1)');

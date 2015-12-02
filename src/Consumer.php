@@ -19,6 +19,10 @@ class Consumer
 
     private $privateKey;
 
+    /**
+     * @param $sharedKey
+     * @param $privateKey
+     */
     public function __construct($sharedKey, $privateKey)
     {
         $this->sharedKey  = $sharedKey;
@@ -40,7 +44,4 @@ class Consumer
     {
         return $this->privateKey;
     }
-
-
-
 }

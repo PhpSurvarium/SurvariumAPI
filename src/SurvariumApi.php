@@ -2,7 +2,8 @@
 /**
  * Facade class for using by community
  *
- * Contains all basic requests to Survarium API server
+ * Contains all basic requests to Survarium API server.
+ * It just wrapper controller and provide methods which will be used by Community members.
  *
  * @package Survarium\Api
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -23,90 +24,135 @@ class SurvariumApi
     }
 
     /**
-     *
+     * Return max match_id played by user with $pid
      * @param $pid
      * @return mixed
      */
     public function getMaxMatchId($pid)
     {
-        return $this->returnResponseBody($this->controller->sendGetRequest('getmaxmatchid', ['pid' => $pid]));
+        $params = [
+            'path' => 'getmaxmatchid',
+            'params' => [
+                'pid' => $pid
+            ]
+        ];
+        return $this->returnResponseBody($params);
     }
 
     /**
-     * Retrieve user nickname by public account ids
+     * Return users public account id by $nickname
+     *
      * @param $nickname
      * @return array
      */
     public function getPublicIdByNickname($nickname)
     {
-        return $this->returnResponseBody($this->controller->sendGetRequest('getpublicidbynickname', ['nickname' => $nickname]));
+        $params = [
+            'path' => 'getpublicidbynickname',
+            'params' => [
+                'nickname' => $nickname
+            ]
+        ];
+        return $this->returnResponseBody($params);
     }
 
     /**
-     * Retrieve a bunch of nicknames by array of public account ids
+     * Return bunch of nicknames by array of public account ids
      *
      * @param  array $pidArray
      * @return mixed
      */
     public function getNicknamesByPublicIds($pidArray)
     {
-        return $this->returnResponseBody($this->controller->sendGetRequest('getnicknamesbypidarray', ['pids' => $pidArray]));
+        $params = [
+            'path' => 'getnicknamesbypidarray',
+            'params' => [
+                'pids' => $pidArray
+            ]
+        ];
+        return $this->returnResponseBody($params);
     }
 
     /**
-     * Retrieve amount of played matches by public account Id
+     * Retrieve amount of played matches by  user whose public account Id equals $pid
      *
      * @param  $pid
      * @return mixed
      */
     public function matchesCountByPublicId($pid)
     {
-        return $this->returnResponseBody($this->controller->sendGetRequest('getmatchescountbypid', ['pid' => $pid]));
+        $params = [
+            'path' => 'getmatchescountbypid',
+            'params' => [
+                'pid' => $pid
+            ]
+        ];
+        return $this->returnResponseBody($params);
     }
 
     /**
-     * Retrieve particular amount of played matches  by public account id
+     * Return particular amount of played matches of user with public account id = $pid
      *
      * @param  $pid
      * @param  $matchAmount
-     * @param  $offset - offset from last played match( by default 0
+     * @param  $offset - offset from last played match ( by default 0 )
      * @return mixed
      */
     public function getMatchesIdByPublicId($pid, $matchAmount = 10, $offset = 0)
     {
-        return $this->returnResponseBody($this->controller->sendGetRequest('getmatchescountbypid', ['pid' => $pid]));
+        $params = [
+            'path' => 'getmatchescountbypid',
+            'params' => [
+                'pid' => $pid
+            ]
+        ];
+        return $this->returnResponseBody($params);
     }
 
     /**
-     * Retrieve statistic of particular match by match_id
+     * Return statistic of particular match by match_id
      *
      * @param  $matchId
      * @return mixed
      */
     public function getMatchStatistic($matchId)
     {
-        return $this->returnResponseBody($this->controller->sendGetRequest('getmatchstatisticbyid', ['matchid' => $matchId]));
+        $params = [
+            'path' => 'getmatchstatisticbyid',
+            'params' => [
+                'matchid' => $matchId
+            ]
+        ];
+        return $this->returnResponseBody($params);
+
     }
 
     /**
-     * Retrieve all user data
+     * Return all users data
      *
      * @param  $pid
      * @return mixed
      */
     public function getUserData($pid)
     {
-        return $this->returnResponseBody($this->controller->sendGetRequest('getuserdatabypid', ['pid' => $pid]));
+        $params = [
+            'path' => 'getuserdatabypid',
+            'params' => [
+                'pid' => $pid
+            ]
+        ];
+        return $this->returnResponseBody($params);
     }
 
     /**
      * Check if request was successful and return body of the request
      *
-     * @param  Response $response
+     * @param  array $params - api path and params
      * @return array
      */
-    private function returnResponseBody(Response $response)
+    private function returnResponseBody($params)
     {
+        $response = $this->controller->sendGetRequest($params['path'], $params['params']);
         if ($response->getStatusCode() == 200) {
             return $this->returnResult($response->getStatusCode(), $response->getBody());
         } else {

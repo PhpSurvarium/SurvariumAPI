@@ -18,21 +18,24 @@ class Controller
 
     protected $response;
 
+    protected $signatureProcessor;
+
     /**
      * We can not require ssl from our community so we use http
      * @var string
      */
-    const baseUrl = 'http://api.survarium.com/';
+    const baseUrl = 'http://api.survarium.loc/';
 
     protected $consumer;
 
     function __construct($sharedKey, $privateKey)
     {
+        $this->signatureProcessor = new SignatureProcessor();
         $this->consumer = new Consumer($sharedKey, $privateKey);
     }
 
     /**
-     * Wrapper for send GET requests
+     * Wrapper for sending GET requests
      *
      * @param  $path
      * @param  $urlParams
@@ -57,7 +60,7 @@ class Controller
      */
     private function sendHttpRequest($method, $path, $params)
     {
-        $this->request =  new Request($method, $path, $params, $this->consumer);
+        $this->request =  new Request($method, $path, $params, $this->consumer, $this->signatureProcessor);
         $this->response = new Response();
         $transporter = new Curl($this->request, $this->response);
         $transporter->send();

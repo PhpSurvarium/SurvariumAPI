@@ -7,13 +7,13 @@
  * @author: Maxim Gar<maxim@vostokgames.com>
  * @version 1.0
  * @link    survarium.com
+ * @todo Add more flexible  ability to set Headers
  */
 
 namespace Survarium\Api;
 
 class Request
 {
-
     protected $headers = [];
 
     protected $body = null;
@@ -27,25 +27,21 @@ class Request
 
     protected $timestamp;
 
-    /**
-     * We use only GET method yet
-     */
     protected $httpMethod;
-
-    public $params;
 
     protected $authParams = [];
 
-    public function __construct($method, $urlPath, array $urlParams = null,  Consumer $consumer)
+    public function __construct($method, $urlPath, array $urlParams = null,  Consumer $consumer, SignatureProcessor $signatureProcessor)
     {
         $this->nonce = $this->generateNonce();
         $this->timestamp = time();
         $this->requestUrl = $this->createFullUrl($urlPath, $urlParams);
         $this->httpMethod = $method;
-        $this->signatureRequest($consumer);
+        $this->signatureRequest($consumer, $signatureProcessor);
     }
 
     /**
+     * Creates absolute url
      *
      * @param $urlPath
      * @param array   $urlParams
@@ -58,9 +54,13 @@ class Request
             $url .= '?' .  http_build_query($urlParams);
         }
         return $url;
-
     }
 
+    /**
+     * Get absolute url
+     *
+     * @return string
+     */
     public function getRequestUrl()
     {
         return $this->requestUrl;
@@ -71,14 +71,13 @@ class Request
      *
      * @param Consumer
      */
-    protected function signatureRequest(Consumer $consumer)
+    protected function signatureRequest(Consumer $consumer, SignatureProcessor $signatureProcessor)
     {
-        $signature = new SignatureProcessor();
-        $sign = $signature->buildSignature($this, $consumer);
+        $sign = $signatureProcessor->buildSignature($this, $consumer);
         $this->setAuthParams('surv_consumer_key', $consumer->getSharedKey());
         $this->setAuthParams('surv_nonce', $this->nonce);
         $this->setAuthParams('surv_signature', $sign);
-        $this->setAuthParams('surv_signature_method', $signature->getName());
+        $this->setAuthParams('surv_signature_method', $signatureProcessor->getName());
         $this->setAuthParams('surv_timestamp', $this->timestamp);
     }
 
@@ -100,6 +99,17 @@ class Request
     }
 
     /**
+     * @param $key
+     * @return bool
+     */
+    public function getAuthParam($key)
+    {
+        return isset($this->authParams[$key])? $this->authParams[$key] : false;
+    }
+
+    /**
+     * Generate random string for signature
+     *
      * @return string
      */
     protected function generateNonce()
@@ -108,11 +118,11 @@ class Request
     }
 
     /**
-     * Combine necessary headers params to string
+     * Combine necessary auth headers params to string
      *
      * @return string
      */
-    public function getAuthHeader()
+    protected function getAuthHeader()
     {
         $first = true;
         $output = 'OAuth ';
