@@ -67,7 +67,7 @@ class SurvariumApi
         $params = [
             'path' => 'getnicknamesbypidarray',
             'params' => [
-                'pids' => $pidArray
+                'pids' => implode(',', $pidArray)
             ]
         ];
         return $this->returnResponseBody($params);
