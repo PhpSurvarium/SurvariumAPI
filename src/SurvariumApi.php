@@ -101,9 +101,11 @@ class SurvariumApi
     public function getMatchesIdByPublicId($pid, $matchAmount = 10, $offset = 0)
     {
         $params = [
-            'path' => 'getmatchescountbypid',
+            'path' => 'getmatchesidbypublicid',
             'params' => [
-                'pid' => $pid
+                'pid' => $pid,
+                'matchAmount' => $matchAmount,
+                'offset' => $offset
             ]
         ];
         return $this->returnResponseBody($params);
