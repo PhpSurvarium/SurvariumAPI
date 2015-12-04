@@ -7,7 +7,7 @@
  * @author: Maxim Gar<maxim@vostokgames.com>
  * @version 1.0
  * @link    survarium.com
- * @todo Add more flexible  ability to set Headers
+ * @todo    Add more flexible  ability to set Headers
  */
 
 namespace Survarium\Api;
@@ -43,8 +43,8 @@ class Request
     /**
      * Creates absolute url
      *
-     * @param $urlPath
-     * @param array   $urlParams
+     * @param  $urlPath
+     * @param  array   $urlParams
      * @return string
      */
     protected function createFullUrl($urlPath, array $urlParams)

@@ -25,6 +25,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $rProperty->setAccessible(true);
         $rProperty->setValue($object, $value);
     }
+
     protected function getController()
     {
         return $this->getMockBuilder('Survarium\Api\Controller')
@@ -42,7 +43,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         return $consumer;
     }
 
-    protected function getSignatureProcessor(){
+    protected function getSignatureProcessor()
+    {
         $sp = $this->getMockBuilder('Survarium\Api\SignatureProcessor')
             ->getMock();
         $sp->method('buildSignature')->willReturn('testSignature');

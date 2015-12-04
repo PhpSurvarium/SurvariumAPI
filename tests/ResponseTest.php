@@ -48,6 +48,6 @@ TEXT;
             'Server'  => 'nginx'
         ];
 
-        $this->assertEquals($expectedArray , $responseHeaders);
+        $this->assertEquals($expectedArray, $responseHeaders);
     }
 }

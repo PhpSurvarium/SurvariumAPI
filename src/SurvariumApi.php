@@ -42,7 +42,7 @@ class SurvariumApi
     /**
      * Return users public account id by $nickname
      *
-     * @param $nickname
+     * @param  $nickname
      * @return array
      */
     public function getPublicIdByNickname($nickname)

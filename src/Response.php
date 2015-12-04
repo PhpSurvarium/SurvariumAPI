@@ -7,7 +7,7 @@
  * @author: Maxim Gar<maxim@vostokgames.com>
  * @version 1.0
  * @link    survarium.com
- * @todo add ability to supply body in different formats
+ * @todo    add ability to supply body in different formats
  */
 
 namespace Survarium\Api;
@@ -71,7 +71,7 @@ class Response
     /**
      * It takes raw header string return array of key value headers
      *
-     * @param $headers
+     * @param  $headers
      * @return array
      */
     public function parseHeaders($headers)
@@ -91,7 +91,8 @@ class Response
      * Change body format
      *
      * Could be implemented later
-     * @param $body
+     *
+     * @param  $body
      * @return mixed
      */
     protected function parseBody($body)

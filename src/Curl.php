@@ -28,7 +28,7 @@ class Curl
     ];
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @throws SurvariumException
      */
@@ -52,7 +52,7 @@ class Curl
      *
      * @param $url
      * @param $headers
-     * @param string $method
+     * @param string  $method
      */
     public function setOptions($url, $headers, $method = 'GET')
     {

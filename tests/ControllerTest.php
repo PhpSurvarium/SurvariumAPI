@@ -13,7 +13,7 @@ use Survarium\Api\Controller;
 
 class ControllerTest extends \PHPUnit_Framework_TestCase
 {
-     public function testReceivingRequest()
+    public function testReceivingRequest()
     {
         $controller = new Controller('test', 'test');
         $result = $controller->sendGetRequest('getmaxmatchid', ['pid' => 3]);

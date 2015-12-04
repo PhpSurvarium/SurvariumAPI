@@ -4,7 +4,7 @@
  *
  * @author: Maxim Gar<maxim@vostokgames.com>
  * @version 1.0
- * @todo add tests for every method of Survarium API with test data
+ * @todo    add tests for every method of Survarium API with test data
  */
 
 namespace Survarium\Api\Tests;

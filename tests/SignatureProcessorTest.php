@@ -39,12 +39,11 @@ class SignatureProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sha1', $acceptedAlgo);
     }
 
-
     /**
      * Check if client produce correct signature
      *
      * @dataProvider signatureDataProvider
-     * @covers ::buildSignature
+     * @covers       ::buildSignature
      */
     public function testBuildSignature($result, $requestString, $consumerString)
     {
@@ -58,8 +57,6 @@ class SignatureProcessorTest extends \PHPUnit_Framework_TestCase
         $signature = $sp->buildSignature($request, $consumer);
         $this->assertEquals($result, $signature);
     }
-
-
 
     public function signatureDataProvider()
     {
