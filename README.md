@@ -8,7 +8,7 @@ You can install it through composer by adding next lines to your composer.json
 ```
 {
     "require" : {
-        "survarium/api" : "*"
+        "survarium/api" : "dev-master@dev"
     }
 }
 ```
