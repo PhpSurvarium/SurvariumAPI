@@ -166,7 +166,6 @@ class SurvariumApi
         } catch (SurvariumException $e) {
             return $this->returnResult($e->getCode(), $e->getMessage());
         }
-
     }
 
     /**

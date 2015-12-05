@@ -65,7 +65,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         //check full url was created well
         $this->assertEquals('http://api.survarium.com/test?test=test', $request->getRequestUrl());
-
         // test if signature request Works fine
         $this->assertEquals('test', $request->getAuthParam('surv_consumer_key'));
         $this->assertEquals('SHA1-HMAC', $request->getAuthParam('surv_signature_method'));
