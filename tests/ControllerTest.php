@@ -16,7 +16,7 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
     public function testReceivingRequest()
     {
         $controller = new Controller('test', 'test');
-        $result = $controller->sendGetRequest('getmaxmatchid', ['pid' => 3]);
+        $result = $controller->sendGetRequest('getmaxmatchid', ['pid' => '17083592333428139024']);
         $this->assertInstanceOf('\Survarium\Api\Response', $result);
         $this->assertEquals(200, $result->getStatusCode());
     }
