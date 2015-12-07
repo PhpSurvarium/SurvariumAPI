@@ -146,6 +146,49 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
+    public function getClanAmounts()
+    {
+        $params = [
+            'path' => 'getclansamount',
+        ];
+        return $this->returnResponseBody($params);
+    }
+
+    public function getClans($amount, $offset)
+    {
+        $params = [
+            'path' => 'getclans',
+            'params' => [
+                'amount' => $amount,
+                'offset' => $offset
+            ]
+        ];
+        return $this->returnResponseBody($params);
+    }
+
+    public function getClanInfo($clanId)
+    {
+        $params = [
+            'path' => 'getclaninfo',
+            'params' => [
+                'clanid' => $clanId,
+            ]
+        ];
+        return $this->returnResponseBody($params);
+    }
+
+    public function getClanMembers($clanId)
+    {
+        $params = [
+            'path' => 'getclanmembers',
+            'params' => [
+                'clanid' => $clanId,
+            ]
+        ];
+        return $this->returnResponseBody($params);
+
+    }
+
     /**
      * Check if request was successful and return body of the request
      *
@@ -154,10 +197,11 @@ class SurvariumApi
      * @param  array $params - api path and params
      * @return array
      */
-    private function returnResponseBody($params)
+    private function returnResponseBody(array $params)
     {
         try {
-            $response = $this->controller->sendGetRequest($params['path'], $params['params']);
+            $urlParams = !empty($params['params'])? $params['params'] : [];
+            $response = $this->controller->sendGetRequest($params['path'], $urlParams);
             if ($response->getStatusCode() == 200) {
                 return $this->returnResult($response->getStatusCode(), $response->getBody());
             } else {
