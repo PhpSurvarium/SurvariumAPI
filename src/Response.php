@@ -14,8 +14,14 @@ namespace Survarium\Api;
 
 class Response
 {
+    /**
+     * @var string
+     */
     protected $body;
 
+    /**
+     * @var array of headers
+     */
     protected $headers;
 
     protected $statusCode = 0;
@@ -25,7 +31,19 @@ class Response
      */
     public function getBody()
     {
-        return $this->body;
+        $result = null;
+        if (!empty($this->headers['Content-Type'])) {
+            switch ($this->headers['Content-Type'])
+            {
+                case 'application/json':
+                    $result = JsonTransformer::decode($this->body);
+                    break;
+                default:
+                    $result = $this->body;
+            }
+        }
+
+        return $result;
     }
 
     /**
