@@ -3,7 +3,7 @@ require_once __DIR__ . '/autoload.php';
 
 $api = new Survarium\Api\SurvariumApi('test', 'test');
 echo '<pre>';
-print_r($api->getMaxMatchId('17083592333428139024'));
+print_r($api->getMaxMatchId());
 print_r($api->matchesCountByPublicId('17083592333428139024'));
 print_r($api->getPublicIdByNickname('Убить врага'));
 print_r($api->getMatchesIdByPublicId('17083592333428139024', 20, 0));

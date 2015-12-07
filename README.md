@@ -23,7 +23,7 @@ You can use $survariumApi object to retrieve necessary data:
 
 ```
 $survariumApi = new \Survarium\Api\SurvariumApi('test', 'test');
-$maxMatchId = $survariumApi->getMaxMatchId($publicAccountId); 
+$maxMatchId = $survariumApi->getMaxMatchId(); 
 ```
 
 API server is under development now. You can use it only for test now.

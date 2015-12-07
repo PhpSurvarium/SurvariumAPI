@@ -24,17 +24,14 @@ class SurvariumApi
     }
 
     /**
-     * Return max match_id played by user with $pid
+     * Return max match_id played in Survarium
      * @param $pid
      * @return mixed
      */
-    public function getMaxMatchId($pid)
+    public function getMaxMatchId()
     {
         $params = [
             'path' => 'getmaxmatchid',
-            'params' => [
-                'pid' => $pid
-            ]
         ];
         return $this->returnResponseBody($params);
     }
@@ -146,6 +143,11 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
+    /**
+     * Return amount of active clans in Survarium
+     *
+     * @return array
+     */
     public function getClanAmounts()
     {
         $params = [
@@ -154,6 +156,13 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
+    /**
+     * Return list of the clan ids and names  ordered by elo reiting (begin from the top)
+     *
+     * @param $amount
+     * @param $offset
+     * @return array
+     */
     public function getClans($amount, $offset)
     {
         $params = [
@@ -166,6 +175,12 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
+    /**
+     * Return name, abbr, level. elo reiting and pid of clan commander
+     *
+     * @param $clanId
+     * @return array
+     */
     public function getClanInfo($clanId)
     {
         $params = [
@@ -177,6 +192,12 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
+    /**
+     * Return members of given clan with their roles
+     *
+     * @param $clanId
+     * @return array
+     */
     public function getClanMembers($clanId)
     {
         $params = [
