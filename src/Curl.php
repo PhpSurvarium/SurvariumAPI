@@ -24,7 +24,8 @@ class Curl
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => 'gzip',
         CURLOPT_HEADER => true,
-        CURLOPT_TIMEOUT => 3
+        CURLOPT_TIMEOUT => 3,
+        CURLOPT_USERAGENT => 'Survarium browser'
     ];
 
     /**
