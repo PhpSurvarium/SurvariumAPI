@@ -99,4 +99,65 @@ class SurvariumApiTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($result));
         $this->assertEquals(200, $result['code']);
     }
+
+    /**
+     * @covers ::getClanAmounts
+     */
+    public function testGetClanAmounts()
+    {
+        $result = $this->api->getClanAmounts();
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertEquals('get_clans_amount', $result['data']['action']);
+        $this->assertTrue($result['data']['amount'] >0);
+    }
+
+    /**
+     * @covers ::getClans
+     */
+    public function testGetClans()
+    {
+        $result = $this->api->getClans(20, 0);
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertEquals('get_clans', $result['data']['action']);
+        $this->assertTrue(is_array($result['data']['clans_data']));
+        $this->assertEquals(20, count($result['data']['clans_data']));
+    }
+
+    /**
+     * @covers ::clanInfo
+     */
+    public function testClanInfo()
+    {
+        $result = $this->api->getClanInfo(1);
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertEquals('get_clan_info', $result['data']['action']);
+        $this->assertTrue(is_array($result['data']['clan_info']));
+        $this->assertEquals('1', $result['data']['clan_info']['id']);
+        $this->assertEquals('Vostok Games', $result['data']['clan_info']['name']);
+        $this->assertEquals('VG', $result['data']['clan_info']['abbreviation']);
+        $this->assertTrue($result['data']['clan_info']['level'] > 0);
+        $this->assertTrue($result['data']['clan_info']['elo'] > 0);
+    }
+
+    /**
+     * :covers ::claninfo
+     */
+
+    public function testGetClanMembers()
+    {
+        $result = $this->api->getClanMembers(1);
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertEquals('get_clan_members_by_clanid', $result['data']['action']);
+        $this->assertEquals('1', $result['data']['clan_id']);
+        $this->assertTrue(is_array($result['data']['members']));
+        $this->assertTrue(count($result['data']['members']) > 0);
+    }
 }
