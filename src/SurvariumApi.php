@@ -112,14 +112,16 @@ class SurvariumApi
      * Return statistic of particular match by match_id
      *
      * @param  $matchId
+     * @param language
      * @return mixed
      */
-    public function getMatchStatistic($matchId)
+    public function getMatchStatistic($matchId, $language = 'en')
     {
         $params = [
             'path' => 'getmatchstatisticbyid',
             'params' => [
-                'matchid' => $matchId
+                'matchid' => $matchId,
+                'language' => $language
             ]
         ];
         return $this->returnResponseBody($params);
@@ -130,14 +132,16 @@ class SurvariumApi
      * Return all users data
      *
      * @param  $pid
+     * @param language
      * @return mixed
      */
-    public function getUserData($pid)
+    public function getUserData($pid, $language = 'en')
     {
         $params = [
             'path' => 'getuserdatabypid',
             'params' => [
-                'pid' => $pid
+                'pid' => $pid,
+                'language' => $language
             ]
         ];
         return $this->returnResponseBody($params);
@@ -208,6 +212,38 @@ class SurvariumApi
         ];
         return $this->returnResponseBody($params);
 
+    }
+
+    /**
+     * @param $language
+     * @return array
+     */
+    public function getSlotsDict($language)
+    {
+        $params = [
+            'path' => 'getslotsdict',
+            'params' => [
+                'language' => $language
+            ]
+
+        ];
+        return $this->returnResponseBody($params);
+    }
+
+    /**
+     * @param $language
+     * @return array
+     */
+    public function getItemsDict($language)
+    {
+        $params = [
+            'path' => 'getitemsdict',
+            'params' => [
+                'language' => $language
+            ]
+
+        ];
+        return $this->returnResponseBody($params);
     }
 
     /**

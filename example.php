@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/autoload.php';
 
 $api = new Survarium\Api\SurvariumApi('test', 'test');
@@ -14,4 +15,6 @@ print_r($api->getClanAmounts());
 print_r($api->getClans(20, 0));
 print_r($api->getClanInfo(1));
 print_r($api->getClanMembers(1));
+print_r($api->getSlotsDict('english'));
+print_r($api->getItemsDict('russian'));
 echo '</pre>';

@@ -146,7 +146,7 @@ class SurvariumApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * :covers ::claninfo
+     * @covers ::claninfo
      */
 
     public function testGetClanMembers()
@@ -160,4 +160,32 @@ class SurvariumApiTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($result['data']['members']));
         $this->assertTrue(count($result['data']['members']) > 0);
     }
+
+    /**
+     * @covers ::getSlotsDict
+     */
+    public function testGetSlotsDict()
+    {
+        $result = $this->api->getSlotsDict('english');
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertEquals('get_slots_dict', $result['data']['action']);
+        $this->assertEquals('helmet', $result['data']['dictionary'][0]);
+    }
+
+    /**
+     * @covers ::getItemsDict
+     */
+    public function testGetItemsDict()
+    {
+        $result = $this->api->getItemsDict('russian');
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertEquals('get_items_dict', $result['data']['action']);
+        $this->assertEquals('АК-74М', $result['data']['dictionary'][3]);
+    }
+
+
 }
