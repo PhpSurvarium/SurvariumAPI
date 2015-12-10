@@ -115,7 +115,7 @@ class SurvariumApi
      * @param language
      * @return mixed
      */
-    public function getMatchStatistic($matchId, $language = 'en')
+    public function getMatchStatistic($matchId, $language = 'english')
     {
         $params = [
             'path' => 'getmatchstatisticbyid',
@@ -135,7 +135,7 @@ class SurvariumApi
      * @param language
      * @return mixed
      */
-    public function getUserData($pid, $language = 'en')
+    public function getUserData($pid, $language = 'english')
     {
         $params = [
             'path' => 'getuserdatabypid',
@@ -211,7 +211,6 @@ class SurvariumApi
             ]
         ];
         return $this->returnResponseBody($params);
-
     }
 
     /**
@@ -225,7 +224,6 @@ class SurvariumApi
             'params' => [
                 'language' => $language
             ]
-
         ];
         return $this->returnResponseBody($params);
     }
@@ -238,6 +236,18 @@ class SurvariumApi
     {
         $params = [
             'path' => 'getitemsdict',
+            'params' => [
+                'language' => $language
+            ]
+
+        ];
+        return $this->returnResponseBody($params);
+    }
+
+    public function getMapsDict($language)
+    {
+        $params = [
+            'path' => 'getmapsdict',
             'params' => [
                 'language' => $language
             ]

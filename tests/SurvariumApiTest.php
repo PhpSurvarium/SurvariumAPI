@@ -187,5 +187,18 @@ class SurvariumApiTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('АК-74М', $result['data']['dictionary'][3]);
     }
 
+    /**
+     * @covers ::getMapsDict
+     */
+    public function testGetMapsDict()
+    {
+        $result = $this->api->getMapsDict('russian');
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertEquals('get_maps_dict', $result['data']['action']);
+        $this->assertTrue($result['data']['dictionary'][0]['map_id'] > 0);
+    }
+
 
 }
