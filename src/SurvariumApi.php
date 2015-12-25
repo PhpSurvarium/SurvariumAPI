@@ -256,6 +256,19 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
+    public function getNewMatches($timestamp, $limit = 50)
+    {
+        $params = [
+            'path' => 'getnewmatchesfrom',
+            'params' => [
+                'timestamp' => $timestamp,
+                'limit'     => $limit
+            ]
+
+        ];
+        return $this->returnResponseBody($params);
+    }
+
     /**
      * Check if request was successful and return body of the request
      *
