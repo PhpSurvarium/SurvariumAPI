@@ -269,6 +269,17 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
+    public function getUserSkills($pid)
+    {
+        $params = [
+            'path' => 'getuserskills',
+            'params' => [
+                'pid' => $pid
+            ]
+        ];
+        return $this->returnResponseBody($params);
+    }
+
     /**
      * Check if request was successful and return body of the request
      *

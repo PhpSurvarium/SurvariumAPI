@@ -18,4 +18,6 @@ print_r($api->getClanMembers(1));
 print_r($api->getSlotsDict('english'));
 print_r($api->getItemsDict('russian'));
 print_r($api->getMapsDict('russian'));
+print_r($api->getNewMatches(1451001600, 10));
+print_r($api->getUserSkills('12886876036947614728'));
 echo '</pre>';
