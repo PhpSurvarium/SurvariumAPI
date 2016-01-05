@@ -200,5 +200,16 @@ class SurvariumApiTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result['data']['dictionary'][0]['map_id'] > 0);
     }
 
+    /**
+     * @covers ::getMapsDict
+     */
+    public function testGetUserSkills()
+    {
+        $result = $this->api->getUserSkills('13269462395033796297');
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(200, $result['code']);
+        $this->assertTrue(is_array($result['data']));
+        $this->assertTrue(count($result['data']['skills']) > 0);
+    }
 
 }
