@@ -256,13 +256,14 @@ class SurvariumApi
         return $this->returnResponseBody($params);
     }
 
-    public function getNewMatches($timestamp, $limit = 50)
+    public function getNewMatches($timestamp, $limit = 20, $offset = 0)
     {
         $params = [
             'path' => 'getnewmatchesfrom',
             'params' => [
                 'timestamp' => $timestamp,
-                'limit'     => $limit
+                'limit'     => $limit,
+                'offset'     => $offset
             ]
 
         ];
