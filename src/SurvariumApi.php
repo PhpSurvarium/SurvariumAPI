@@ -294,11 +294,7 @@ class SurvariumApi
         try {
             $urlParams = !empty($params['params'])? $params['params'] : [];
             $response = $this->controller->sendGetRequest($params['path'], $urlParams);
-            if ($response->getStatusCode() == 200) {
-                return $this->returnResult($response->getStatusCode(), $response->getBody());
-            } else {
-                return $this->returnResult($response->getStatusCode(), false);
-            }
+            return $this->returnResult($response->getStatusCode(), $response->getBody());
         } catch (SurvariumException $e) {
             return $this->returnResult($e->getCode(), $e->getMessage());
         }
