@@ -27,6 +27,6 @@ $maxMatchId = $survariumApi->getMaxMatchId();
 ```
 
 API server is under development now. You can use it only for test now.
-In order to get personal credentials for our API, please, mail to phoenix@vostokgames.com.
+In order to get personal credentials for our API, please, use http://api.survarium.com/register
 
  
